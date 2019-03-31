@@ -9,7 +9,7 @@ const Methods = {
          const newNote = new models.Note(data)
          newNote.save()
          const id = newNote._id
-         
+
          return id
       }
    },
@@ -31,22 +31,29 @@ const Methods = {
    },
 
    find: async (data) => {
+      
       var notes = null
 
-      if (data) {
+      if (data.data !== undefined && data.data.id !== undefined) { //Si solo quiero encontrar uno (1), por su ID.
 
-         if (data.all === undefined) { //Si solo quiero encontrar uno (1), por su ID.
-            notes = await models.Note.findById(data);
+         notes = await models.Note.findById(data.data.id);
+      } else {
+
+         if (Object.keys(data).length == 1) { //Toda la información de la base de datos.
+
+            notes = await models.Note.find();
          } else { //Si quiero encontrar todos los relacionados con ese valor
-            delete data.all // Ya no será necesaria, solo me funcionaba para saber que cantidad buscar
-            notes = await models.Note.find(data)
+
+            //some = new RegExp(data.data.color, "i") //Ejemplo, no influeye en el programa
+            //console.log(some)
+            //notes = await models.Note.find().where('color').regex(some).limit(data.amount)
          }
-      } else { //Si quiero todo
-         notes = await models.Note.find();
       }
+
       return notes;
    },
    deleteNote: (data) => {
+      console.log(data)
       Methods.find(data).then(notes => {
          notes.forEach(element => {
             element.remove()
@@ -55,16 +62,12 @@ const Methods = {
       })
    },
    updateNote: (data) => {
-      const id = data.id
-
-      delete data.id //Lo elimino para no tener redundancia y no reasignarlo, cuando no es necesario.
-      
       //TODO: Pensar en que casos no se puede editar las notas.
 
-      Methods.find(id).then(info => {
+      Methods.find(data).then(info => {
 
-         Object.keys(data).forEach(element =>{
-            info[element] = data[element]
+         Object.keys(data.data).forEach(element => {
+            info[element] = data.data[element]
          })
          info.save()
       })

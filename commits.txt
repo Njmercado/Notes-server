@@ -1,0 +1,3 @@
+* Cree un archivo de busqueda 'searcher.js', en tiempo real, para cuando se desee buscar una nota en especifico.
+* Implementé, pero aun no se ha terminado por causas externas de linux, las notificaciones --> solo un ejemplo y la creación 
+* TODO: debo terminar el uso de notificaciones, en este caso estoy usando 'notify-send', pero creo que voy a usar 'web-push' para un mejor manejo de la notifición que estoy mandando.
