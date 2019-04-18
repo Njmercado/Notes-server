@@ -13,8 +13,8 @@
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "mongoose": "^5.4.5",
-    "node-notifier": "^5.4.0",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "web-push": "^3.3.3"
   },
   "devDependencies": {
     "nodemon": "^1.18.9"

@@ -1,3 +1,8 @@
-* Cree un archivo de busqueda 'searcher.js', en tiempo real, para cuando se desee buscar una nota en especifico.
-* Implementé, pero aun no se ha terminado por causas externas de linux, las notificaciones --> solo un ejemplo y la creación 
-* TODO: debo terminar el uso de notificaciones, en este caso estoy usando 'notify-send', pero creo que voy a usar 'web-push' para un mejor manejo de la notifición que estoy mandando.
+* Cree nuevo Schema para usuarios. Se conectan con Notes.
+   - Manejo de Queries, Joins, para los debidos resultados. Estoy usando 'Populate'. 
+* Cree un archivo , 'User', para agregar usuarios.
+* Cree un archivo, 'userController', dentro de la carpeta Controller, para manejar los llamados a la DB realcionados con User
+   - Se pueden Eliminar usuarios, completamente, y al mismo tiempo se eliminan todas las notas que este tenia registradas
+* Comencé a usar 'Web Services' para el manejo de notificaciones. Uso esto en cámbio de 'node-notifier', porque me permite
+  enviar notificaciones aun cuando la pagina no está abierta.
+* Tambien desinstalé 'push.js' y 'node-notifier', e instalé 'web-push'

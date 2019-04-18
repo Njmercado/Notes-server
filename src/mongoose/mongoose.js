@@ -1,3 +1,4 @@
+//Stablish a connections with remote DB.
 var mongoose = require("mongoose")
 
 mongoose.connect("mongodb://localhost/notes", {useNewUrlParser:true})
