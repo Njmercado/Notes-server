@@ -18,14 +18,33 @@ var index = require("./Routes/index")
 var searcher = require("./Routes/Searcher")
 var user = require("./Routes/User")
 
+app.use(express.static(path.join(__dirname, "/Client")))//Carga la informacion de la pagina a mostrar --> Cliente
 app.use(bodyParser.urlencoded({
    extended:true
 }))
 app.use(bodyParser.json())
 
-app.use("/user", user)
-app.use("/note", index) //miniaplicación para el home
+//Routes
+app.use("/user", user) //Manejo de los usuarios, CRUD
+app.use("/note", index) //Manejo de las notas, CRUD
 app.use("/search", searcher) //buscador para poder encontrar una nota o un grupo de notas en especifico
+//
+
+app.post('/subscribe', (req, res) =>{//--> Main de la api para el llamado de 
+
+   console.log(req.body)
+
+   const subscription = req.body.subscription
+
+   //Resource has been created
+   res.status(201).json({})
+
+   //Create Payload
+   const payload = JSON.stringify({title: req.body.title})
+   //
+
+   webpush.sendNotification(subscription, payload).catch(err => console.error(err))
+})
 
 app.listen(port, () => {
    console.log(`listen in port ${port}`)
