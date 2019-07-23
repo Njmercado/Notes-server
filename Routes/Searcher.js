@@ -6,7 +6,7 @@ const controller = require('../src/Controller/indexController')
 
 router.route("/").post((req, res)=>{
    
-   controller.find(req.body).then(notes => res.send(notes))
+    controller.find(req.body.params.data).then(notes => res.send(notes))
 })
 
 module.exports = router

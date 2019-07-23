@@ -15,12 +15,12 @@ Estructura de la busqueda:
 
 router.route("/").get((req, res) => { //Obtiene todas las notas
 
-   controller.find(req.body).then((notes) => {// --> todas las notas
+   controller.find(req.query).then((notes) => {// --> todas las notas
       res.send(notes)
    })
 }).post((req, res) => { //Agrega una Nota, nueva.
 
-   controller.addNewNote(req.body).then(result=>{
+   controller.addNewNote(req.body.params.data).then(result=>{
       res.send({
          result:result
       })
@@ -38,7 +38,7 @@ router.route("/").get((req, res) => { //Obtiene todas las notas
          }
     */
 
-   controller.deleteNote(req.body).then(result =>{
+   controller.deleteNote( JSON.parse(req.query.data) ).then(result =>{
       res.send({
          result: result
       })

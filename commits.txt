@@ -1,6 +1,1 @@
-* Agregué una carpeta 'Client':
-   - Hará la simulación de un usuario comsumiendo la API. 
-   - El consumo de la API, por parte del usuario, no es completo, solo funciona para mostrar las notificaciones.
-   - Tiene, dentro de si, el service worker, 'worker.js', para mostrar las notificaciones --> aun no se como funciona, pero lo hace
-   - Tambien tiene el script relacionado con el cliente, 'client.js', que interactua con el usuario y con el servidor
-     para la comunicacion de los datos, notificaciones.
+* Alguno cambio para realizar los proceso de CRUD mejor.

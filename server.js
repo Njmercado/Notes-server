@@ -1,8 +1,10 @@
 const express = require("express")
 const app = express()
-const bodyParser = require("body-parser")
 const webpush = require('web-push')
 const path = require('path')
+const cors = require("cors")
+const morgan = require("morgan")
+const cookieParser = require("cookie-parser")
 
 //Configuration of notifications. Begin
 const publicVapidKey = "BHcvEVyfQHL_BhSUYduy-06DschMO7nsbVBeQ4OY0rtyH3edxStaUgkRFEvWHhB9fUQhoBjBvEcz6LG2cX8iE5g"
@@ -18,11 +20,12 @@ var index = require("./Routes/index")
 var searcher = require("./Routes/Searcher")
 var user = require("./Routes/User")
 
-app.use(express.static(path.join(__dirname, "/Client")))//Carga la informacion de la pagina a mostrar --> Cliente
-app.use(bodyParser.urlencoded({
-   extended:true
-}))
-app.use(bodyParser.json())
+//app.use(express.static(path.join(__dirname, "/Client")))//Carga la informacion de la pagina a mostrar --> Cliente
+app.use(express.json())
+app.use(express.urlencoded({extended: true}))
+app.use(cookieParser())
+app.use(morgan('div'))
+app.use(cors({credentials: true, origin: true}))
 
 //Routes
 app.use("/user", user) //Manejo de los usuarios, CRUD
